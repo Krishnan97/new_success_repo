@@ -194,5 +194,20 @@ public with sharing class PropertyController {
             LIMIT 100
         ];
     }
+    @AuraEnabled(cacheable=true)
+    public static Property__c[] devCommitNew(
+        String searchKey,
+        Decimal maxPrice,
+        Integer minBedrooms,
+        Integer minBathrooms
+    ) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT
+                Id,
+                location__longitude__s
+            FROM property__c
+        ];
+    }
 }
 /*Commit 2*/
