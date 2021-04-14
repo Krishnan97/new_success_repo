@@ -209,5 +209,33 @@ public with sharing class PropertyController {
             FROM property__c
         ];
     }
+    @AuraEnabled(cacheable=true)
+    public static Property__c[] intCommitNew(
+        String searchKey,
+        Decimal maxPrice,
+        Integer minBedrooms,
+        Integer minBathrooms
+    ) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT
+                Id,
+                address__c,
+                city__c,
+                state__c,
+                description__c,
+                price__c,
+                baths__c,
+                beds__c,
+                rooms__c,
+                kitchens__c,
+                balconies__c,
+                halls__c,
+                thumbnail__c,
+                location__latitude__s,
+                location__longitude__s
+            FROM property__c
+        ];
+    }
 }
 /*Commit 2*/
