@@ -122,5 +122,43 @@ public with sharing class PropertyController {
             ORDER BY CreatedDate
         ];
     }
+    @AuraEnabled(cacheable=true)
+    public static Property__c[] intCommit(
+        String searchKey,
+        Decimal maxPrice,
+        Integer minBedrooms,
+        Integer minBathrooms
+    ) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT
+                Id,
+                address__c,
+                city__c,
+                state__c,
+                description__c,
+                price__c,
+                baths__c,
+                beds__c,
+                rooms__c,
+                kitchens__c,
+                balconies__c,
+                halls__c,
+                thumbnail__c,
+                location__latitude__s,
+                location__longitude__s
+            FROM property__c
+            WHERE
+                (title__c LIKE :key
+                OR city__c LIKE :key
+                OR tags__c LIKE :key)
+                AND price__c <= :maxPrice
+                AND beds__c >= :minBedrooms
+                AND baths__c >= :minBathrooms
+            WITH SECURITY_ENFORCED
+            ORDER BY price__c
+            LIMIT 100
+        ];
+    }
 }
 /*Commit 2*/
