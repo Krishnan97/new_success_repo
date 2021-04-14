@@ -195,6 +195,36 @@ public with sharing class PropertyController {
         ];
     }
     @AuraEnabled(cacheable=true)
+    public static Property__c[] devCommitNew(
+        String searchKey,
+        Decimal maxPrice,
+        Integer minBedrooms,
+        Integer minBathrooms
+    ) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT
+                Id,
+                location__longitude__s
+            FROM property__c
+        ];
+    }
+    @AuraEnabled(cacheable=true)
+    public static Property__c[] devCommitNewest(
+        String searchKey,
+        Decimal maxPrice,
+        Integer minBedrooms,
+        Integer minBathrooms
+    ) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT
+                Commit__c,
+                Number3__c,
+            FROM branch
+        ];
+    }
+    @AuraEnabled(cacheable=true)
     public static Property__c[] intCommitNew(
         String searchKey,
         Decimal maxPrice,
