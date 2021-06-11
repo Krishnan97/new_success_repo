@@ -3,7 +3,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment
-        >Action override created by Lightning App Builder during activation.</comment>
+        >Action override created by Lightning App Builder during activation.New line in comment</comment>
         <content>Property_Record_Page</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
