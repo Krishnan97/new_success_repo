@@ -3,7 +3,7 @@ import { reduceErrors } from 'c/ldsUtils';
 describe('c-lds-utils', () => {
     describe('reduceErrors', () => {
         it('reduces single error with message in body', () => {
-            const FULL_ERROR = { body: { message: 'mockError' } };
+            const FULL_ERROR = { body: { message: 'mockErrorFound' } };
             const REDUCED_ERROR = [FULL_ERROR.body.message];
 
             const reduced = reduceErrors(FULL_ERROR);
